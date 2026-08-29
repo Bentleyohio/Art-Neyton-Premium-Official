@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Websites</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f0f12;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 25px;
+      font-size: 2.2rem;
+    }
+
+    .card {
+      background: #15151b;
+      border: 1px solid #262630;
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      max-width: 340px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .launcher-btn {
+      padding: 12px 20px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #000;
+      background-color: #00f0ff;
+      border: 2px solid #00f0ff;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 55px;
+      box-sizing: border-box;
+    }
+
+    .launcher-btn img {
+      max-height: 35px;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    .launcher-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
+      background-color: #55f5ff;
+    }
+
+    .version {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-size: 0.8em;
+      color: #0ff;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Websites</h1>
+
+  <div class="card">
+    <button class="launcher-btn" onclick="location.href='https://login.i-ready.com.xyz.strongdog.ililiilliiliililil.jumpingcrab.com/'">
+      <img src="cf1ec7b0-e1b1-4429-b4b9-8572c5be604e_removalai_preview.png" alt="Strongdog SDXP">
+    </button>
+    
+    <button class="launcher-btn" onclick="location.href='https://example.com'">
+      Button 2
+    </button>
+    
+    <button class="launcher-btn" onclick="location.href='https://example.com'">
+      Button 3
+    </button>
+  </div>
+
+  <div class="version">V1.4.0</div>
+
+</body>
+</html>
