@@ -266,12 +266,10 @@
 </head>
 <body>
 
-  <!-- Intro Overlay -->
   <div class="watermark-overlay">
     <div class="watermark-text">Made by Bentley</div>
   </div>
 
-  <!-- Company Header Logo -->
   <div class="header-logo-container">
     <img src="Logo.png" alt="Art Neyton Premium" class="header-logo">
   </div>
@@ -279,50 +277,40 @@
   <div class="card">
     <button class="settings-icon" onclick="toggleSettings()" title="Settings">⚙</button>
 
-    <!-- 5x5 Grid Layout -->
     <div class="grid-container">
-      <!-- Slot 1: Strongdog -->
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.xyz.strongdog.ililiilliiliililil.jumpingcrab.com/')">
         <img src="StrongDogLogo.png" alt="Strongdog SDXP">
       </button>
 
-      <!-- Slot 2: Luminal OS -->
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.luminalos.nmnnmmn.learning.mooo.com/')">
         <img src="Luminal.png" alt="Luminal OS">
       </button>
 
-      <!-- Slot 3: Fern -->
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.fern.isgoated.illillililililili.mooo.com')">
         <img src="Fern.png" alt="Fern">
       </button>
 
-      <!-- Slot 4: DogeUB -->
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.doge.nmnnmmn.learnin.mooo.com/')">
         <img src="DogeUB.png" alt="DogeUB">
       </button>
 
-      <!-- Slot 5: Galaxy -->
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.galaxy.iliiliililiilililil.ignorelist.com/')">
         <img src="Galaxy.png" alt="Galaxy">
       </button>
 
-      <!-- Slot 6: Shadow -->
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.shadow.ililiilliiliililil.mooo.com/')">
         <img src="Shadow.png" alt="Shadow">
       </button>
 
-      <!-- Slot 7: Nautilus -->
       <button class="launcher-btn" onclick="openLink('https://unpkg.com/valoq-math-work@1.0.17/index.html')">
         <img src="Nautilus.png" alt="Nautilus">
       </button>
 
-      <!-- Slot 8: 1-Key -->
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.1key.iliiliiiliil.jumpingcrab.com/')">
         <img src="key-turning.gif" alt="Key GIF">
         <span>1-Key</span>
       </button>
 
-      <!-- Slots 9 through 25 -->
       <button class="launcher-btn" onclick="openLink('https://example.com')">Site 9</button>
       <button class="launcher-btn" onclick="openLink('https://example.com')">Site 10</button>
       <button class="launcher-btn" onclick="openLink('https://example.com')">Site 11</button>
@@ -342,7 +330,6 @@
       <button class="launcher-btn" onclick="openLink('https://example.com')">Site 25</button>
     </div>
 
-    <!-- Settings Panel -->
     <div id="settingsPanel" class="settings-panel">
       <div class="setting-item">
         <span>about:blank</span>
@@ -352,7 +339,6 @@
         </label>
       </div>
 
-      <!-- Tab Cloaker Dropdown -->
       <div class="setting-item">
         <span>Tab Cloak</span>
         <select id="tabCloakSelect" class="custom-select" onchange="applyCloak()">
@@ -365,19 +351,18 @@
         </select>
       </div>
 
-      <!-- Background Customization Dropdown -->
       <div class="setting-item">
         <span>Background</span>
-        <select id="bgSelect" class="custom-select" onchange="applyBackground()">
+        <select id="bgSelect" class="custom-select" onchange="handleBgChange()">
           <option value="default">Default Dark</option>
-          <option value="teto">Teto (GIF)</option>
-          <option value="femboy">Femboy (Image)</option>
+          <option value="teto">Teto</option>
+          <option value="femboy">Femboy</option>
         </select>
       </div>
     </div>
   </div>
 
-  <div class="version">V3.8.0</div>
+  <div class="version">V3.9.0</div>
 
   <script>
     const aboutBlankToggle = document.getElementById('aboutBlankToggle');
@@ -432,6 +417,18 @@
       link.href = cloakData.icon;
 
       localStorage.setItem('selectedCloak', selected);
+    }
+
+    function handleBgChange() {
+      const selected = bgSelect.value;
+      if (selected === 'femboy') {
+        const confirmed = confirm('Use at your own risk');
+        if (!confirmed) {
+          bgSelect.value = localStorage.getItem('selectedBg') || 'default';
+          return;
+        }
+      }
+      applyBackground(selected);
     }
 
     function applyBackground(preset) {
