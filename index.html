@@ -185,23 +185,36 @@
           <span class="slider"></span>
         </label>
       </div>
+
+      <div class="setting-item">
+        <span>Anti-Close</span>
+        <label class="switch">
+          <input type="checkbox" id="antiCloseToggle" onchange="saveSettings()">
+          <span class="slider"></span>
+        </label>
+      </div>
     </div>
   </div>
 
-  <div class="version">V1.9.0</div>
+  <div class="version">V2.0.0</div>
 
   <script>
-    const toggle = document.getElementById('aboutBlankToggle');
+    const aboutBlankToggle = document.getElementById('aboutBlankToggle');
+    const antiCloseToggle = document.getElementById('antiCloseToggle');
 
-    // Load permanently saved toggle state on start
+    // Load permanently saved toggle states on start
     window.onload = function() {
       if (localStorage.getItem('aboutBlankEnabled') === 'true') {
-        toggle.checked = true;
+        aboutBlankToggle.checked = true;
+      }
+      if (localStorage.getItem('antiCloseEnabled') === 'true') {
+        antiCloseToggle.checked = true;
       }
     };
 
     function saveSettings() {
-      localStorage.setItem('aboutBlankEnabled', toggle.checked);
+      localStorage.setItem('aboutBlankEnabled', aboutBlankToggle.checked);
+      localStorage.setItem('antiCloseEnabled', antiCloseToggle.checked);
     }
 
     function toggleSettings() {
@@ -210,7 +223,17 @@
     }
 
     function openLink(url) {
-      if (toggle.checked) {
+      const useAboutBlank = aboutBlankToggle.checked;
+      const useAntiClose = antiCloseToggle.checked;
+
+      // Script string injected if Anti-Close is enabled
+      const antiCloseScript = useAntiClose ? `
+        window.onbeforeunload = function() {
+          return "Are you sure you want to leave?";
+        };
+      ` : '';
+
+      if (useAboutBlank) {
         // Open site in about:blank tab
         const win = window.open('about:blank', '_blank');
         if (win) {
@@ -223,6 +246,7 @@
               </head>
               <body>
                 <iframe src="${url}"></iframe>
+                <script>${antiCloseScript.replace(/<\/script>/g, "<\\/script>")}<\/script>
               </body>
             </html>
           `);
@@ -231,7 +255,12 @@
         // Redirect current tab to Clever
         window.location.href = 'https://clever.com';
       } else {
-        // Normal navigation
+        // Normal navigation (apply anti-close to current window before redirecting if enabled)
+        if (useAntiClose) {
+          window.onbeforeunload = function() {
+            return "Are you sure you want to leave?";
+          };
+        }
         window.location.href = url;
       }
     }
