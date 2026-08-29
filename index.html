@@ -14,6 +14,60 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Watermark Intro Animation */
+    .watermark-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #09090b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: fadeOutOverlay 0.8s ease 1.8s forwards;
+      pointer-events: none;
+    }
+
+    .watermark-text {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #00f0ff;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      text-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff;
+      opacity: 0;
+      transform: scale(0.8);
+      animation: introGlow 1.6s ease-in-out forwards;
+    }
+
+    @keyframes introGlow {
+      0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+        filter: blur(10px);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.05) translateY(0);
+        filter: blur(0px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0px);
+      }
+    }
+
+    @keyframes fadeOutOverlay {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
     }
 
     h1 {
@@ -158,6 +212,11 @@
 </head>
 <body>
 
+  <!-- Watermark Intro Overlay -->
+  <div class="watermark-overlay">
+    <div class="watermark-text">Made by Bentley</div>
+  </div>
+
   <h1>Websites</h1>
 
   <div class="card">
@@ -185,36 +244,22 @@
           <span class="slider"></span>
         </label>
       </div>
-
-      <div class="setting-item">
-        <span>Anti-Close</span>
-        <label class="switch">
-          <input type="checkbox" id="antiCloseToggle" onchange="saveSettings()">
-          <span class="slider"></span>
-        </label>
-      </div>
     </div>
   </div>
 
-  <div class="version">V2.0.0</div>
+  <div class="version">V2.3.0</div>
 
   <script>
     const aboutBlankToggle = document.getElementById('aboutBlankToggle');
-    const antiCloseToggle = document.getElementById('antiCloseToggle');
 
-    // Load permanently saved toggle states on start
     window.onload = function() {
       if (localStorage.getItem('aboutBlankEnabled') === 'true') {
         aboutBlankToggle.checked = true;
-      }
-      if (localStorage.getItem('antiCloseEnabled') === 'true') {
-        antiCloseToggle.checked = true;
       }
     };
 
     function saveSettings() {
       localStorage.setItem('aboutBlankEnabled', aboutBlankToggle.checked);
-      localStorage.setItem('antiCloseEnabled', antiCloseToggle.checked);
     }
 
     function toggleSettings() {
@@ -223,18 +268,7 @@
     }
 
     function openLink(url) {
-      const useAboutBlank = aboutBlankToggle.checked;
-      const useAntiClose = antiCloseToggle.checked;
-
-      // Script string injected if Anti-Close is enabled
-      const antiCloseScript = useAntiClose ? `
-        window.onbeforeunload = function() {
-          return "Are you sure you want to leave?";
-        };
-      ` : '';
-
-      if (useAboutBlank) {
-        // Open site in about:blank tab
+      if (aboutBlankToggle.checked) {
         const win = window.open('about:blank', '_blank');
         if (win) {
           win.document.write(`
@@ -246,21 +280,13 @@
               </head>
               <body>
                 <iframe src="${url}"></iframe>
-                <script>${antiCloseScript.replace(/<\/script>/g, "<\\/script>")}<\/script>
               </body>
             </html>
           `);
           win.document.close();
         }
-        // Redirect current tab to Clever
         window.location.href = 'https://clever.com';
       } else {
-        // Normal navigation (apply anti-close to current window before redirecting if enabled)
-        if (useAntiClose) {
-          window.onbeforeunload = function() {
-            return "Are you sure you want to leave?";
-          };
-        }
         window.location.href = url;
       }
     }
