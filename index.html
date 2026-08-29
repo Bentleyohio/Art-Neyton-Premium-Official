@@ -244,6 +244,78 @@
       background-color: #fff;
     }
 
+    /* Custom In-Website Modal Popup */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(5px);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-box {
+      background: #121026;
+      border: 1px solid #3b356b;
+      border-radius: 12px;
+      padding: 24px;
+      width: 90%;
+      max-width: 380px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(123, 115, 255, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .modal-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #ff4949;
+    }
+
+    .modal-body {
+      font-size: 0.95rem;
+      color: #d4d4d8;
+      line-height: 1.4;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 5px;
+    }
+
+    .modal-btn {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-btn-confirm {
+      background-color: #7b73ff;
+      color: #fff;
+    }
+
+    .modal-btn-cancel {
+      background-color: #27272a;
+      color: #a1a1aa;
+    }
+
+    .modal-btn:hover {
+      opacity: 0.85;
+    }
+
     .version {
       position: fixed;
       bottom: 10px;
@@ -268,6 +340,17 @@
 
   <div class="watermark-overlay">
     <div class="watermark-text">Made by Bentley</div>
+  </div>
+
+  <div id="riskModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-title">⚠️ Warning</div>
+      <div class="modal-body">Use at your own risk.</div>
+      <div class="modal-actions">
+        <button class="modal-btn modal-btn-cancel" onclick="cancelRiskModal()">Cancel</button>
+        <button class="modal-btn modal-btn-confirm" onclick="confirmRiskModal()">Continue</button>
+      </div>
+    </div>
   </div>
 
   <div class="header-logo-container">
@@ -362,12 +445,13 @@
     </div>
   </div>
 
-  <div class="version">V3.9.0</div>
+  <div class="version">V4.0.0</div>
 
   <script>
     const aboutBlankToggle = document.getElementById('aboutBlankToggle');
     const tabCloakSelect = document.getElementById('tabCloakSelect');
     const bgSelect = document.getElementById('bgSelect');
+    const riskModal = document.getElementById('riskModal');
 
     const cloaks = {
       default: { title: 'Art Neyton Premium', icon: 'Logo.png' },
@@ -422,13 +506,20 @@
     function handleBgChange() {
       const selected = bgSelect.value;
       if (selected === 'femboy') {
-        const confirmed = confirm('Use at your own risk');
-        if (!confirmed) {
-          bgSelect.value = localStorage.getItem('selectedBg') || 'default';
-          return;
-        }
+        riskModal.style.display = 'flex';
+      } else {
+        applyBackground(selected);
       }
-      applyBackground(selected);
+    }
+
+    function confirmRiskModal() {
+      riskModal.style.display = 'none';
+      applyBackground('femboy');
+    }
+
+    function cancelRiskModal() {
+      riskModal.style.display = 'none';
+      bgSelect.value = localStorage.getItem('selectedBg') || 'default';
     }
 
     function applyBackground(preset) {
