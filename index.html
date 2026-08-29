@@ -83,7 +83,6 @@
       width: 100%;
       height: auto;
       border-radius: 8px;
-      filter: drop-shadow(0 0 12px rgba(123, 115, 255, 0.4));
     }
 
     /* Outer Container Card */
@@ -109,16 +108,17 @@
       width: 100%;
     }
 
+    /* Flat Solid Block Buttons */
     .launcher-btn {
       padding: 10px;
       font-size: 0.95rem;
       font-weight: bold;
-      color: #000;
-      background-color: #00f0ff;
-      border: 2px solid #00f0ff;
-      border-radius: 10px;
+      color: #ffffff;
+      background-color: #1a1829;
+      border: 1px solid #2e2a4a;
+      border-radius: 8px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -135,9 +135,8 @@
     }
 
     .launcher-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
-      background-color: #55f5ff;
+      background-color: #27233d;
+      border-color: #433d6b;
     }
 
     .settings-icon {
@@ -155,7 +154,7 @@
     }
 
     .settings-icon:hover {
-      color: #00f0ff;
+      color: #7b73ff;
       transform: rotate(30deg);
     }
 
@@ -212,13 +211,13 @@
     }
 
     input:checked + .slider {
-      background-color: #00f0ff;
-      border-color: #00f0ff;
+      background-color: #7b73ff;
+      border-color: #7b73ff;
     }
 
     input:checked + .slider:before {
       transform: translateX(20px);
-      background-color: #000;
+      background-color: #fff;
     }
 
     .version {
@@ -258,12 +257,10 @@
 
     <!-- 5x5 Button Grid -->
     <div class="grid-container">
-      <!-- Slot 1: Strongdog Image Button -->
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.xyz.strongdog.ililiilliiliililil.jumpingcrab.com/')">
         <img src="StrongDogLogo.png" alt="Strongdog SDXP">
       </button>
 
-      <!-- Slots 2 through 25 -->
       <button class="launcher-btn" onclick="openLink('https://example.com')">Site 2</button>
       <button class="launcher-btn" onclick="openLink('https://example.com')">Site 3</button>
       <button class="launcher-btn" onclick="openLink('https://example.com')">Site 4</button>
@@ -302,7 +299,7 @@
     </div>
   </div>
 
-  <div class="version">V2.5.0</div>
+  <div class="version">V2.6.0</div>
 
   <script>
     const aboutBlankToggle = document.getElementById('aboutBlankToggle');
