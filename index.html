@@ -32,6 +32,7 @@
       width: 100%;
       max-width: 340px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      position: relative;
     }
 
     .launcher-btn {
@@ -49,6 +50,7 @@
       justify-content: center;
       min-height: 55px;
       box-sizing: border-box;
+      width: 100%;
     }
 
     .launcher-btn img {
@@ -61,6 +63,87 @@
       transform: translateY(-2px);
       box-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
       background-color: #55f5ff;
+    }
+
+    .settings-icon {
+      position: absolute;
+      top: 10px;
+      right: -55px;
+      background: none;
+      border: none;
+      color: #71717a;
+      font-size: 2.2rem;
+      cursor: pointer;
+      transition: color 0.2s ease, transform 0.2s ease;
+      padding: 5px;
+      line-height: 1;
+    }
+
+    .settings-icon:hover {
+      color: #00f0ff;
+      transform: rotate(30deg);
+    }
+
+    .settings-panel {
+      display: none;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 10px;
+      padding-top: 15px;
+      border-top: 1px solid #262630;
+    }
+
+    .setting-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      color: #d4d4d8;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #27272a;
+      transition: 0.3s;
+      border-radius: 24px;
+      border: 1px solid #3f3f46;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: #a1a1aa;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #00f0ff;
+      border-color: #00f0ff;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+      background-color: #000;
     }
 
     .version {
@@ -78,20 +161,81 @@
   <h1>Websites</h1>
 
   <div class="card">
-    <button class="launcher-btn" onclick="location.href='https://login.i-ready.com.xyz.strongdog.ililiilliiliililil.jumpingcrab.com/'">
+    <button class="settings-icon" onclick="toggleSettings()" title="Settings">⚙</button>
+
+    <!-- Main Buttons -->
+    <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.xyz.strongdog.ililiilliiliililil.jumpingcrab.com/')">
       <img src="StrongDogLogo.png" alt="Strongdog SDXP">
     </button>
     
-    <button class="launcher-btn" onclick="location.href='https://example.com'">
+    <button class="launcher-btn" onclick="openLink('https://example.com')">
       Button 2
     </button>
     
-    <button class="launcher-btn" onclick="location.href='https://example.com'">
+    <button class="launcher-btn" onclick="openLink('https://example.com')">
       Button 3
     </button>
+
+    <!-- Settings Panel -->
+    <div id="settingsPanel" class="settings-panel">
+      <div class="setting-item">
+        <span>about:blank</span>
+        <label class="switch">
+          <input type="checkbox" id="aboutBlankToggle" onchange="saveSettings()">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
   </div>
 
-  <div class="version">V1.4.0</div>
+  <div class="version">V1.9.0</div>
+
+  <script>
+    const toggle = document.getElementById('aboutBlankToggle');
+
+    // Load permanently saved toggle state on start
+    window.onload = function() {
+      if (localStorage.getItem('aboutBlankEnabled') === 'true') {
+        toggle.checked = true;
+      }
+    };
+
+    function saveSettings() {
+      localStorage.setItem('aboutBlankEnabled', toggle.checked);
+    }
+
+    function toggleSettings() {
+      const panel = document.getElementById('settingsPanel');
+      panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function openLink(url) {
+      if (toggle.checked) {
+        // Open site in about:blank tab
+        const win = window.open('about:blank', '_blank');
+        if (win) {
+          win.document.write(`
+            <html>
+              <head>
+                <title>Clever | Portal</title>
+                <link rel="icon" href="https://assets.clever.com/favicons/clever-favicon.ico">
+                <style>body { margin: 0; padding: 0; overflow: hidden; background: #000; } iframe { width: 100vw; height: 100vh; border: none; }</style>
+              </head>
+              <body>
+                <iframe src="${url}"></iframe>
+              </body>
+            </html>
+          `);
+          win.document.close();
+        }
+        // Redirect current tab to Clever
+        window.location.href = 'https://clever.com';
+      } else {
+        // Normal navigation
+        window.location.href = url;
+      }
+    }
+  </script>
 
 </body>
 </html>
