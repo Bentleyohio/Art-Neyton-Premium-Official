@@ -72,14 +72,14 @@
       }
     }
 
-    /* Header Logo - Sized up */
+    /* Header Logo */
     .header-logo-container {
       margin-bottom: 25px;
       text-align: center;
     }
 
     .header-logo {
-      max-width: 450px; /* Sized up from 320px */
+      max-width: 450px;
       width: 100%;
       height: auto;
       border-radius: 8px;
@@ -108,7 +108,7 @@
       width: 100%;
     }
 
-    /* Flat Solid Block Buttons - Unchanged size */
+    /* Flat Solid Block Buttons */
     .launcher-btn {
       padding: 10px;
       font-size: 0.95rem;
@@ -129,7 +129,7 @@
     }
 
     .launcher-btn img {
-      max-height: 35px; /* Restored to original size */
+      max-height: 35px;
       max-width: 100%;
       object-fit: contain;
     }
@@ -242,10 +242,12 @@
 </head>
 <body>
 
+  <!-- Intro Overlay -->
   <div class="watermark-overlay">
     <div class="watermark-text">Made by Bentley</div>
   </div>
 
+  <!-- Company Header Logo -->
   <div class="header-logo-container">
     <img src="Logo.png" alt="Art Neyton Premium" class="header-logo">
   </div>
@@ -253,12 +255,19 @@
   <div class="card">
     <button class="settings-icon" onclick="toggleSettings()" title="Settings">⚙</button>
 
+    <!-- 5x5 Grid Layout -->
     <div class="grid-container">
+      <!-- Slot 1: Strongdog -->
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.xyz.strongdog.ililiilliiliililil.jumpingcrab.com/')">
         <img src="StrongDogLogo.png" alt="Strongdog SDXP">
       </button>
 
-      <button class="launcher-btn" onclick="openLink('https://example.com')">Site 2</button>
+      <!-- Slot 2: Luminal OS -->
+      <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.luminalos.nmnnmmn.learning.mooo.com/')">
+        <img src="Luminal.png" alt="Luminal OS">
+      </button>
+
+      <!-- Slots 3 through 25 -->
       <button class="launcher-btn" onclick="openLink('https://example.com')">Site 3</button>
       <button class="launcher-btn" onclick="openLink('https://example.com')">Site 4</button>
       <button class="launcher-btn" onclick="openLink('https://example.com')">Site 5</button>
@@ -284,6 +293,7 @@
       <button class="launcher-btn" onclick="openLink('https://example.com')">Site 25</button>
     </div>
 
+    <!-- Settings Panel -->
     <div id="settingsPanel" class="settings-panel">
       <div class="setting-item">
         <span>about:blank</span>
@@ -295,7 +305,7 @@
     </div>
   </div>
 
-  <div class="version">V2.8.0</div>
+  <div class="version">V2.9.0</div>
 
   <script>
     const aboutBlankToggle = document.getElementById('aboutBlankToggle');
