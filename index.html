@@ -107,7 +107,29 @@
       position: relative;
     }
 
-    /* 5x5 Grid Layout */
+    /* Category Switcher Button */
+    .nav-toggle-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 1.05rem;
+      font-weight: bold;
+      color: #00f2fe;
+      background-color: rgba(10, 22, 40, 0.8);
+      border: 1px solid #00f2fe;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, box-shadow 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 5px rgba(0, 242, 254, 0.5);
+    }
+
+    .nav-toggle-btn:hover {
+      background-color: rgba(0, 242, 254, 0.15);
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+    }
+
+    /* Main 5x5 Grid Layout */
     .grid-container {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -145,6 +167,47 @@
     .launcher-btn:hover {
       background-color: rgba(39, 35, 61, 0.95);
       border-color: #433d6b;
+    }
+
+    /* Dynamic Utilities Grid Layout */
+    .utility-grid-container {
+      display: none;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      width: 100%;
+    }
+
+    .utility-btn {
+      padding: 20px;
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: rgba(15, 30, 54, 0.9);
+      border: 2px solid #1d426d;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 95px;
+      box-sizing: border-box;
+      width: 100%;
+      text-align: center;
+    }
+
+    .utility-btn img {
+      max-height: 55px;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    .utility-btn:hover {
+      background-color: rgba(22, 45, 80, 0.95);
+      border-color: #00f2fe;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+      transform: translateY(-2px);
     }
 
     .settings-icon {
@@ -244,7 +307,7 @@
       background-color: #fff;
     }
 
-    /* Custom In-Website Modal Popup */
+    /* Modal Popup */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -329,6 +392,9 @@
       .grid-container {
         grid-template-columns: repeat(3, 1fr);
       }
+      .utility-grid-container {
+        grid-template-columns: 1fr;
+      }
       .settings-icon {
         right: 15px;
         top: -45px;
@@ -360,76 +426,61 @@
   <div class="card">
     <button class="settings-icon" onclick="toggleSettings()" title="Settings">⚙</button>
 
-    <div class="grid-container">
+    <button id="viewToggleBtn" class="nav-toggle-btn" onclick="toggleView()">Switch to Utilities</button>
+
+    <div id="gamesGrid" class="grid-container">
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.xyz.strongdog.ililiilliiliililil.jumpingcrab.com/')">
         <img src="StrongDogLogo.png" alt="Strongdog SDXP">
       </button>
-
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.luminalos.nmnnmmn.learning.mooo.com/')">
         <img src="Luminal.png" alt="Luminal OS">
       </button>
-
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.fern.isgoated.illillililililili.mooo.com')">
         <img src="Fern.png" alt="Fern">
       </button>
-
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.doge.nmnnmmn.learnin.mooo.com/')">
         <img src="DogeUB.png" alt="DogeUB">
       </button>
-
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.galaxy.iliiliililiilililil.ignorelist.com/')">
         <img src="Galaxy.png" alt="Galaxy">
       </button>
-
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.shadow.ililiilliiliililil.mooo.com/')">
         <img src="Shadow.png" alt="Shadow">
       </button>
-
       <button class="launcher-btn" onclick="openLink('https://unpkg.com/valoq-math-work@1.0.17/index.html')">
         <img src="Nautilus.png" alt="Nautilus">
       </button>
-
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.1key.iliiliiiliil.jumpingcrab.com/')">
         <img src="key-turning.gif" alt="Key GIF">
         <span>1-Key</span>
       </button>
-
       <button class="launcher-btn" onclick="openLink('https://www.canva.com.arctic.ilililililllilillillililiilllllllilil.chickenkiller.com')">
         <img src="Arctic.png" alt="Arctic">
       </button>
-
       <button class="launcher-btn" onclick="openLink('https://www.canva.com.ghost.lab.ilililililllilillillililiilllllllilil.chickenkiller.com')">
         <img src="Ghost.png" alt="Ghost">
       </button>
-
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.petezah.ililiilliiliilil.mooo.com/')">
         <img src="Petezah.png" alt="Petezah">
       </button>
-
       <button class="launcher-btn" onclick="openLink('https://www.canva.com.cherri.ilililililliil.chickenkiller.com')">
         <img src="Cherri.png" alt="Cherri">
       </button>
-
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.velara.ililliii.jumpingcrab.com')">
         <img src="Velara.png" alt="Velara">
       </button>
-
       <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.utopia.ililllilii.mooo.com')">
         <img src="Utopia.png" alt="Utopia">
       </button>
-
       <button class="launcher-btn" onclick="openLink('https://www.canva.com.catclass.ilililililllilillillililiilllllllilil.chickenkiller.com')">
         <img src="Catclass.png" alt="Catclass">
       </button>
-
       <button class="launcher-btn" onclick="openLink('https://www.canva.com.mizu.ilillillilililililiiililililililililililil.chickenkiller.com')">
         <img src="Mizu.png" alt="Mizu">
       </button>
-
       <button class="launcher-btn" onclick="openLink('http://www.canva.com.duckmath.ililillililililililililililiilililiil.chickenkiller.com/')">
         <img src="DuckMath.png" alt="DuckMath">
       </button>
-
       <button class="launcher-btn" onclick="openLink('https://www.canva.com.studyhall.ilililiiilliillillillililiilllllllilil.chickenkiller.com')">
         <img src="StudyHall.png" alt="StudyHall">
       </button>
@@ -440,6 +491,12 @@
       <button class="launcher-btn" onclick="openLink('https://example.com')">Site 23</button>
       <button class="launcher-btn" onclick="openLink('https://example.com')">Site 24</button>
       <button class="launcher-btn" onclick="openLink('https://example.com')">Site 25</button>
+    </div>
+
+    <div id="utilitiesGrid" class="utility-grid-container">
+      <button class="utility-btn" onclick="openLink('https://www.canva.com.toustream.lliiililillillillililiilllilil.chickenkiller.com')">
+        <img src="Cheesy.png" alt="Cheesy">
+      </button>
     </div>
 
     <div id="settingsPanel" class="settings-panel">
@@ -477,13 +534,16 @@
     </div>
   </div>
 
-  <div class="version">V5.3.0</div>
+  <div class="version">V5.6.0</div>
 
   <script>
     const aboutBlankToggle = document.getElementById('aboutBlankToggle');
     const tabCloakSelect = document.getElementById('tabCloakSelect');
     const bgSelect = document.getElementById('bgSelect');
     const riskModal = document.getElementById('riskModal');
+    const gamesGrid = document.getElementById('gamesGrid');
+    const utilitiesGrid = document.getElementById('utilitiesGrid');
+    const viewToggleBtn = document.getElementById('viewToggleBtn');
 
     const cloaks = {
       default: { title: 'Art Neyton Premium', icon: 'Logo.png' },
@@ -516,6 +576,22 @@
       bgSelect.value = savedBg;
       applyBackground(savedBg);
     };
+
+    function toggleView() {
+      if (gamesGrid.style.display === 'none') {
+        gamesGrid.style.display = 'grid';
+        utilitiesGrid.style.display = 'none';
+        viewToggleBtn.textContent = 'Switch to Utilities';
+        viewToggleBtn.style.color = '#00f2fe';
+        viewToggleBtn.style.borderColor = '#00f2fe';
+      } else {
+        gamesGrid.style.display = 'none';
+        utilitiesGrid.style.display = 'grid';
+        viewToggleBtn.textContent = 'Switch to Games';
+        viewToggleBtn.style.color = '#7b73ff';
+        viewToggleBtn.style.borderColor = '#7b73ff';
+      }
+    }
 
     function saveSettings() {
       localStorage.setItem('aboutBlankEnabled', aboutBlankToggle.checked);
