@@ -2,30 +2,192 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title id="tabTitle">Art Neyton Premium</title>
-  <link id="tabFavicon" rel="icon" href="Logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="tabTitle">Canva</title>
+  <link id="tabFavicon" rel="icon" href="https://www.canva.com/favicon.ico">
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: Arial, sans-serif;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* Canva Disguise Styling */
+    #canvaDisguise {
+      background: linear-gradient(135deg, #7d2ae8 0%, #00c4cc 100%);
+      min-height: 100vh;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+      width: 100%;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 800;
+      font-style: italic;
+      color: #ffffff;
+      text-decoration: none;
+      letter-spacing: -1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover {
+      opacity: 0.8;
+    }
+
+    .search-box {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 8px 16px;
+      border-radius: 6px;
+      color: #ffffff;
+      font-size: 0.9rem;
+      outline: none;
+      width: 180px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .search-box::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .search-box:focus {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: #ffffff;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px 40px;
+      flex: 1;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 32px;
+      max-width: 600px;
+    }
+
+    .start-btn {
+      background-color: #ffffff;
+      color: #0e1318;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform 0.1s, background-color 0.2s;
+    }
+
+    .start-btn:hover {
+      background-color: #f2f2f2;
+      transform: translateY(-1px);
+    }
+
+    .preview-container {
+      margin-top: 40px;
+      width: 100%;
+      max-width: 900px;
+      background: #ffffff;
+      border-radius: 12px 12px 0 0;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .preview-header {
+      background: #00c4cc;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .preview-logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      font-style: italic;
+      color: #ffffff;
+    }
+
+    .share-btn {
+      background: #ffffff;
+      color: #0e1318;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .preview-body {
+      height: 300px;
+      background: #f4f5f7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6d757d;
+      font-size: 1.1rem;
+    }
+
+    /* Art Neyton Hub Styling (Hidden by Default) */
+    #artNeytonContent {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      width: 100%;
       background: #090814;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
       padding: 40px 20px;
       box-sizing: border-box;
-      overflow-x: hidden;
-      transition: background-image 0.3s ease;
     }
 
-    /* Watermark Intro Animation */
     .watermark-overlay {
       position: fixed;
       top: 0;
@@ -54,31 +216,15 @@
     }
 
     @keyframes introGlow {
-      0% {
-        opacity: 0;
-        transform: scale(0.8) translateY(20px);
-        filter: blur(10px);
-      }
-      50% {
-        opacity: 1;
-        transform: scale(1.05) translateY(0);
-        filter: blur(0px);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-        filter: blur(0px);
-      }
+      0% { opacity: 0; transform: scale(0.8) translateY(20px); filter: blur(10px); }
+      50% { opacity: 1; transform: scale(1.05) translateY(0); filter: blur(0px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0px); }
     }
 
     @keyframes fadeOutOverlay {
-      to {
-        opacity: 0;
-        visibility: hidden;
-      }
+      to { opacity: 0; visibility: hidden; }
     }
 
-    /* Header Logo */
     .header-logo-container {
       margin-bottom: 25px;
       text-align: center;
@@ -91,7 +237,6 @@
       border-radius: 8px;
     }
 
-    /* Outer Container Card */
     .card {
       background: rgba(18, 16, 38, 0.9);
       backdrop-filter: blur(10px);
@@ -107,7 +252,6 @@
       position: relative;
     }
 
-    /* Category Switcher Button */
     .nav-toggle-btn {
       width: 100%;
       padding: 12px;
@@ -129,7 +273,6 @@
       box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
     }
 
-    /* Main 5x5 Grid Layout */
     .grid-container {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -137,7 +280,6 @@
       width: 100%;
     }
 
-    /* Flat Solid Block Buttons */
     .launcher-btn {
       padding: 10px;
       font-size: 0.95rem;
@@ -156,6 +298,7 @@
       box-sizing: border-box;
       width: 100%;
       text-align: center;
+      text-decoration: none;
     }
 
     .launcher-btn img {
@@ -169,7 +312,6 @@
       border-color: #433d6b;
     }
 
-    /* Dynamic Utilities Grid Layout */
     .utility-grid-container {
       display: none;
       grid-template-columns: repeat(2, 1fr);
@@ -195,6 +337,7 @@
       box-sizing: border-box;
       width: 100%;
       text-align: center;
+      text-decoration: none;
     }
 
     .utility-btn img {
@@ -258,56 +401,6 @@
       transition: border-color 0.2s ease;
     }
 
-    .custom-select:hover, .custom-select:focus {
-      border-color: #7b73ff;
-    }
-
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 44px;
-      height: 24px;
-    }
-
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: #27272a;
-      transition: 0.3s;
-      border-radius: 24px;
-      border: 1px solid #3f3f46;
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 16px;
-      width: 16px;
-      left: 3px;
-      bottom: 3px;
-      background-color: #a1a1aa;
-      transition: 0.3s;
-      border-radius: 50%;
-    }
-
-    input:checked + .slider {
-      background-color: #7b73ff;
-      border-color: #7b73ff;
-    }
-
-    input:checked + .slider:before {
-      transform: translateX(20px);
-      background-color: #fff;
-    }
-
-    /* Modal Popup */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -336,24 +429,9 @@
       gap: 15px;
     }
 
-    .modal-title {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #ff4949;
-    }
-
-    .modal-body {
-      font-size: 0.95rem;
-      color: #d4d4d8;
-      line-height: 1.4;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 5px;
-    }
+    .modal-title { font-size: 1.2rem; font-weight: bold; color: #ff4949; }
+    .modal-body { font-size: 0.95rem; color: #d4d4d8; line-height: 1.4; }
+    .modal-actions { display: flex; gap: 10px; justify-content: center; margin-top: 5px; }
 
     .modal-btn {
       padding: 8px 16px;
@@ -362,22 +440,10 @@
       border-radius: 6px;
       cursor: pointer;
       border: none;
-      transition: opacity 0.2s ease;
     }
 
-    .modal-btn-confirm {
-      background-color: #7b73ff;
-      color: #fff;
-    }
-
-    .modal-btn-cancel {
-      background-color: #27272a;
-      color: #a1a1aa;
-    }
-
-    .modal-btn:hover {
-      opacity: 0.85;
-    }
+    .modal-btn-confirm { background-color: #7b73ff; color: #fff; }
+    .modal-btn-cancel { background-color: #27272a; color: #a1a1aa; }
 
     .version {
       position: fixed;
@@ -389,170 +455,229 @@
     }
 
     @media (max-width: 768px) {
-      .grid-container {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      .utility-grid-container {
-        grid-template-columns: 1fr;
-      }
-      .settings-icon {
-        right: 15px;
-        top: -45px;
-      }
+      .grid-container { grid-template-columns: repeat(3, 1fr); }
+      .utility-grid-container { grid-template-columns: 1fr; }
+      .settings-icon { right: 15px; top: -45px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="watermark-overlay">
-    <div class="watermark-text">Made by Bentley</div>
+  <!-- Disguise Page -->
+  <div id="canvaDisguise">
+    <header>
+      <div class="nav-left">
+        <a href="https://www.canva.com" class="logo">Canva</a>
+        <ul class="nav-links">
+          <li><a href="https://www.canva.com/design/">Design</a></li>
+          <li><a href="https://www.canva.com/features/">Product</a></li>
+          <li><a href="https://www.canva.com/pricing/">Plans</a></li>
+          <li><a href="https://www.canva.com/business/">Business</a></li>
+          <li><a href="https://www.canva.com/education/">Education</a></li>
+          <li><a href="https://www.canva.com/help/">Help</a></li>
+        </ul>
+      </div>
+      <div class="nav-right">
+        <input type="text" class="search-box" placeholder="Search" onkeydown="handleSearchTrigger(event)">
+      </div>
+    </header>
+
+    <main class="hero">
+      <h1>What will you design today?</h1>
+      <p>Make AI-powered social posts, videos, presentations, and more with Canva.</p>
+      <a href="https://www.canva.com/create/" class="start-btn">Start designing</a>
+
+      <div class="preview-container">
+        <div class="preview-header">
+          <span class="preview-logo">Canva</span>
+          <div class="preview-actions">
+            <a href="https://www.canva.com" class="share-btn">Share</a>
+          </div>
+        </div>
+        <div class="preview-body">
+          Workspace Preview
+        </div>
+      </div>
+    </main>
   </div>
 
-  <div id="riskModal" class="modal-overlay">
-    <div class="modal-box">
-      <div class="modal-title">⚠️ Warning</div>
-      <div class="modal-body">Use at your own risk.</div>
-      <div class="modal-actions">
-        <button class="modal-btn modal-btn-cancel" onclick="cancelRiskModal()">Cancel</button>
-        <button class="modal-btn modal-btn-confirm" onclick="confirmRiskModal()">Continue</button>
+  <!-- Hidden Art Neyton Hub -->
+  <div id="artNeytonContent">
+
+    <div class="watermark-overlay">
+      <div class="watermark-text">Made by Bentley</div>
+    </div>
+
+    <div id="riskModal" class="modal-overlay">
+      <div class="modal-box">
+        <div class="modal-title">⚠️ Warning</div>
+        <div class="modal-body">Use at your own risk.</div>
+        <div class="modal-actions">
+          <button class="modal-btn modal-btn-cancel" onclick="cancelRiskModal()">Cancel</button>
+          <button class="modal-btn modal-btn-confirm" onclick="confirmRiskModal()">Continue</button>
+        </div>
       </div>
     </div>
+
+    <div class="header-logo-container">
+      <img src="Logo.png" alt="Art Neyton Premium" class="header-logo">
+    </div>
+
+    <div class="card">
+      <button class="settings-icon" onclick="toggleSettings()" title="Settings">⚙</button>
+
+      <button id="viewToggleBtn" class="nav-toggle-btn" onclick="toggleView()">Switch to Utilities</button>
+
+      <div id="gamesGrid" class="grid-container">
+        <a class="launcher-btn" href="https://login.i-ready.com.xyz.strongdog.ililiilliiliililil.jumpingcrab.com/">
+          <img src="StrongDogLogo.png" alt="Strongdog SDXP">
+        </a>
+        <a class="launcher-btn" href="https://login.i-ready.com.luminalos.nmnnmmn.learning.mooo.com/">
+          <img src="Luminal.png" alt="Luminal OS">
+        </a>
+        <a class="launcher-btn" href="https://login.i-ready.com.fern.isgoated.illillililililili.mooo.com">
+          <img src="Fern.png" alt="Fern">
+        </a>
+        <a class="launcher-btn" href="https://login.i-ready.com.doge.nmnnmmn.learnin.mooo.com/">
+          <img src="DogeUB.png" alt="DogeUB">
+        </a>
+        <a class="launcher-btn" href="https://www.canva.com.galaxyv7.lliiilililliiliilillililiilllilil.chickenkiller.com">
+          <img src="Galaxy.png" alt="Galaxy">
+        </a>
+        <a class="launcher-btn" href="https://login.i-ready.com.shadow.ililiilliiliililil.mooo.com/">
+          <img src="Shadow.png" alt="Shadow">
+        </a>
+        <a class="launcher-btn" href="https://unpkg.com/valoq-math-work@1.0.17/index.html">
+          <img src="Nautilus.png" alt="Nautilus">
+        </a>
+        <a class="launcher-btn" href="https://login.i-ready.com.1key.iliiliiiliil.jumpingcrab.com/">
+          <img src="key-turning.gif" alt="Key GIF">
+          <span>1-Key</span>
+        </a>
+        <a class="launcher-btn" href="https://www.canva.com.arctic.ilililililllilillillililiilllllllilil.chickenkiller.com">
+          <img src="Arctic.png" alt="Arctic">
+        </a>
+        <a class="launcher-btn" href="https://www.canva.com.ghost.lab.ilililililllilillillililiilllllllilil.chickenkiller.com">
+          <img src="Ghost.png" alt="Ghost">
+        </a>
+        <a class="launcher-btn" href="https://login.i-ready.com.petezah.ililiilliiliilil.mooo.com/">
+          <img src="Petezah.png" alt="Petezah">
+        </a>
+        <a class="launcher-btn" href="https://www.canva.com.cherri.ilililililliil.chickenkiller.com">
+          <img src="Cherri.png" alt="Cherri">
+        </a>
+        <a class="launcher-btn" href="https://login.i-ready.com.velara.ililliii.jumpingcrab.com">
+          <img src="Velara.png" alt="Velara">
+        </a>
+        <a class="launcher-btn" href="https://login.i-ready.com.utopia.ililllilii.mooo.com">
+          <img src="Utopia.png" alt="Utopia">
+        </a>
+        <a class="launcher-btn" href="https://www.canva.com.catclass.ilililililllilillillililiilllllllilil.chickenkiller.com">
+          <img src="Catclass.png" alt="Catclass">
+        </a>
+        <a class="launcher-btn" href="https://www.canva.com.mizu.ilillillilililililiiililililililililililil.chickenkiller.com">
+          <img src="Mizu.png" alt="Mizu">
+        </a>
+        <a class="launcher-btn" href="http://www.canva.com.duckmath.ililillililililililililililiilililiil.chickenkiller.com/">
+          <img src="DuckMath.png" alt="DuckMath">
+        </a>
+        <a class="launcher-btn" href="https://www.canva.com.studyhall.ilililiiilliillillillililiilllllllilil.chickenkiller.com">
+          <img src="StudyHall.png" alt="StudyHall">
+        </a>
+        <a class="launcher-btn" href="https://www.canva.com.tungtung.lliiilililliiliilillililiilllilil.chickenkiller.com">
+          <img src="Tung-Tung.png" alt="Tung-Tung">
+        </a>
+        <a class="launcher-btn" href="https://www.canva.com.noahs.tutoring.hub.iilililliiliilillililiilllilil.chickenkiller.com">
+          <img src="Noahs-tutoring-hub.png" alt="Noahs-tutoring-hub">
+        </a>
+        <a class="launcher-btn" href="https://www.canva.com.xylora.lliiilililliiliilillililiilllilil.chickenkiller.com">
+          <img src="Xylora.png" alt="Xylora">
+        </a>
+        <a class="launcher-btn" href="https://www.canva.com.nocturne.ilililililllilllillililiilllllllilil.chickenkiller.com">
+          <img src="Nocturne.png" alt="Nocturne">
+        </a>
+        <a class="launcher-btn" href="https://www.canva.com.rhodium.liililililililililliil.studdddy.ya.chickenkiller.com">
+          <img src="Rhodium.png" alt="Rhodium">
+        </a>
+        <a class="launcher-btn" href="https://www.canva.onlylessions.ilillililiililil.definately.learning.chickenkiller.com">
+          <img src="desync.png" alt="desync">
+        </a>
+        <a class="launcher-btn" href="https://example.com">Site 25</a>
+      </div>
+
+      <div id="utilitiesGrid" class="utility-grid-container">
+        <a class="utility-btn" href="https://www.canva.com.toustream.lliiililillillillililiilllilil.chickenkiller.com">
+          <img src="Cheesy.png" alt="Cheesy">
+        </a>
+        <a class="utility-btn" href="https://login.i-ready.com.no-guardian-hub.ililiilliiliililil.jumpingcrab.com">
+          <img src="No-Guardian-Hub.png" alt="No-Guardian-Hub">
+        </a>
+      </div>
+
+      <div id="settingsPanel" class="settings-panel">
+        <div class="setting-item">
+          <span>Tab Cloak</span>
+          <select id="tabCloakSelect" class="custom-select" onchange="applyCloak()">
+            <option value="default">Default</option>
+            <option value="google">Google</option>
+            <option value="drive">Google Drive</option>
+            <option value="classroom">Google Classroom</option>
+            <option value="clever">Clever</option>
+            <option value="canvas">Canvas</option>
+          </select>
+        </div>
+
+        <div class="setting-item">
+          <span>Background</span>
+          <select id="bgSelect" class="custom-select" onchange="handleBgChange()">
+            <option value="default">Default Dark</option>
+            <option value="teto">Teto</option>
+            <option value="femboy">Femboy</option>
+            <option value="tulips">Tulips</option>
+            <option value="daisys">Daisys</option>
+            <option value="lynda">Lynda</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="version">V1.6.6</div>
+
   </div>
-
-  <div class="header-logo-container">
-    <img src="Logo.png" alt="Art Neyton Premium" class="header-logo">
-  </div>
-
-  <div class="card">
-    <button class="settings-icon" onclick="toggleSettings()" title="Settings">⚙</button>
-
-    <button id="viewToggleBtn" class="nav-toggle-btn" onclick="toggleView()">Switch to Utilities</button>
-
-    <div id="gamesGrid" class="grid-container">
-      <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.xyz.strongdog.ililiilliiliililil.jumpingcrab.com/')">
-        <img src="StrongDogLogo.png" alt="Strongdog SDXP">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.luminalos.nmnnmmn.learning.mooo.com/')">
-        <img src="Luminal.png" alt="Luminal OS">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.fern.isgoated.illillililililili.mooo.com')">
-        <img src="Fern.png" alt="Fern">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.doge.nmnnmmn.learnin.mooo.com/')">
-        <img src="DogeUB.png" alt="DogeUB">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://www.canva.com.galaxyv7.lliiilililliiliilillililiilllilil.chickenkiller.com')">
-        <img src="Galaxy.png" alt="Galaxy">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.shadow.ililiilliiliililil.mooo.com/')">
-        <img src="Shadow.png" alt="Shadow">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://unpkg.com/valoq-math-work@1.0.17/index.html')">
-        <img src="Nautilus.png" alt="Nautilus">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.1key.iliiliiiliil.jumpingcrab.com/')">
-        <img src="key-turning.gif" alt="Key GIF">
-        <span>1-Key</span>
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://www.canva.com.arctic.ilililililllilillillililiilllllllilil.chickenkiller.com')">
-        <img src="Arctic.png" alt="Arctic">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://www.canva.com.ghost.lab.ilililililllilillillililiilllllllilil.chickenkiller.com')">
-        <img src="Ghost.png" alt="Ghost">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.petezah.ililiilliiliilil.mooo.com/')">
-        <img src="Petezah.png" alt="Petezah">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://www.canva.com.cherri.ilililililliil.chickenkiller.com')">
-        <img src="Cherri.png" alt="Cherri">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.velara.ililliii.jumpingcrab.com')">
-        <img src="Velara.png" alt="Velara">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://login.i-ready.com.utopia.ililllilii.mooo.com')">
-        <img src="Utopia.png" alt="Utopia">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://www.canva.com.catclass.ilililililllilillillililiilllllllilil.chickenkiller.com')">
-        <img src="Catclass.png" alt="Catclass">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://www.canva.com.mizu.ilillillilililililiiililililililililililil.chickenkiller.com')">
-        <img src="Mizu.png" alt="Mizu">
-      </button>
-      <button class="launcher-btn" onclick="openLink('http://www.canva.com.duckmath.ililillililililililililililiilililiil.chickenkiller.com/')">
-        <img src="DuckMath.png" alt="DuckMath">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://www.canva.com.studyhall.ilililiiilliillillillililiilllllllilil.chickenkiller.com')">
-        <img src="StudyHall.png" alt="StudyHall">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://www.canva.com.tungtung.lliiilililliiliilillililiilllilil.chickenkiller.com')">
-        <img src="Tung-Tung.png" alt="Tung-Tung">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://www.canva.com.noahs.tutoring.hub.iilililliiliilillililiilllilil.chickenkiller.com')">
-        <img src="Noahs-tutoring-hub.png" alt="Noahs-tutoring-hub">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://www.canva.com.xylora.lliiilililliiliilillililiilllilil.chickenkiller.com')">
-        <img src="Xylora.png" alt="Xylora">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://www.canva.com.nocturne.ilililililllilllillililiilllllllilil.chickenkiller.com')">
-        <img src="Nocturne.png" alt="Nocturne">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://www.canva.com.rhodium.liililililililililliil.studdddy.ya.chickenkiller.com')">
-        <img src="Rhodium.png" alt="Rhodium">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://www.canva.onlylessions.ilillililiililil.definately.learning.chickenkiller.com')">
-        <img src="desync.png" alt="desync">
-      </button>
-      <button class="launcher-btn" onclick="openLink('https://example.com')">Site 25</button>
-    </div>
-
-    <div id="utilitiesGrid" class="utility-grid-container">
-      <button class="utility-btn" onclick="openLink('https://www.canva.com.toustream.lliiililillillillililiilllilil.chickenkiller.com')">
-        <img src="Cheesy.png" alt="Cheesy">
-      </button>
-      <button class="utility-btn" onclick="openLink('https://login.i-ready.com.no-guardian-hub.ililiilliiliililil.jumpingcrab.com')">
-        <img src="No-Guardian-Hub.png" alt="No-Guardian-Hub">
-      </button>
-    </div>
-
-    <div id="settingsPanel" class="settings-panel">
-      <div class="setting-item">
-        <span>about:blank</span>
-        <label class="switch">
-          <input type="checkbox" id="aboutBlankToggle" onchange="saveSettings()">
-          <span class="slider"></span>
-        </label>
-      </div>
-
-      <div class="setting-item">
-        <span>Tab Cloak</span>
-        <select id="tabCloakSelect" class="custom-select" onchange="applyCloak()">
-          <option value="default">Default</option>
-          <option value="google">Google</option>
-          <option value="drive">Google Drive</option>
-          <option value="classroom">Google Classroom</option>
-          <option value="clever">Clever</option>
-          <option value="canvas">Canvas</option>
-        </select>
-      </div>
-
-      <div class="setting-item">
-        <span>Background</span>
-        <select id="bgSelect" class="custom-select" onchange="handleBgChange()">
-          <option value="default">Default Dark</option>
-          <option value="teto">Teto</option>
-          <option value="femboy">Femboy</option>
-          <option value="tulips">Tulips</option>
-          <option value="daisys">Daisys</option>
-          <option value="lynda">Lynda</option>
-        </select>
-      </div>
-    </div>
-  </div>
-
-  <div class="version">V1.6.3</div>
 
   <script>
-    const aboutBlankToggle = document.getElementById('aboutBlankToggle');
+    const SECRET_KEY = "ihateschool";
+
+    function handleSearchTrigger(event) {
+      if (event.key === 'Enter') {
+        const input = event.target.value.trim();
+        if (input === SECRET_KEY) {
+          unlockArtNeyton();
+        } else {
+          // Standard fallback search redirect
+          window.location.href = `https://www.canva.com/search?q=${encodeURIComponent(input)}`;
+        }
+      }
+    }
+
+    function unlockArtNeyton() {
+      document.getElementById('canvaDisguise').style.display = 'none';
+      document.getElementById('artNeytonContent').style.display = 'flex';
+      
+      // Update Tab Details
+      document.getElementById('tabTitle').innerText = 'Art Neyton Premium';
+      document.getElementById('tabFavicon').href = 'Logo.png';
+
+      // Load Saved Cloak & Background
+      const savedCloak = localStorage.getItem('selectedCloak') || 'default';
+      tabCloakSelect.value = savedCloak;
+      applyCloak(savedCloak);
+
+      const savedBg = localStorage.getItem('selectedBg') || 'default';
+      bgSelect.value = savedBg;
+      applyBackground(savedBg);
+    }
+
     const tabCloakSelect = document.getElementById('tabCloakSelect');
     const bgSelect = document.getElementById('bgSelect');
     const riskModal = document.getElementById('riskModal');
@@ -578,20 +703,6 @@
       lynda: 'url("Lynda.png")'
     };
 
-    window.onload = function() {
-      if (localStorage.getItem('aboutBlankEnabled') === 'true') {
-        aboutBlankToggle.checked = true;
-      }
-      
-      const savedCloak = localStorage.getItem('selectedCloak') || 'default';
-      tabCloakSelect.value = savedCloak;
-      applyCloak(savedCloak);
-
-      const savedBg = localStorage.getItem('selectedBg') || 'default';
-      bgSelect.value = savedBg;
-      applyBackground(savedBg);
-    };
-
     function toggleView() {
       if (gamesGrid.style.display === 'none') {
         gamesGrid.style.display = 'grid';
@@ -606,10 +717,6 @@
         viewToggleBtn.style.color = '#7b73ff';
         viewToggleBtn.style.borderColor = '#7b73ff';
       }
-    }
-
-    function saveSettings() {
-      localStorage.setItem('aboutBlankEnabled', aboutBlankToggle.checked);
     }
 
     function applyCloak(preset) {
@@ -652,11 +759,13 @@
       const selected = preset || bgSelect.value;
       const bgUrl = backgrounds[selected] || backgrounds.default;
 
+      const artNeyton = document.getElementById('artNeytonContent');
+
       if (selected === 'default') {
-        document.body.style.backgroundImage = 'none';
-        document.body.style.backgroundColor = '#090814';
+        artNeyton.style.backgroundImage = 'none';
+        artNeyton.style.backgroundColor = '#090814';
       } else {
-        document.body.style.backgroundImage = bgUrl;
+        artNeyton.style.backgroundImage = bgUrl;
       }
 
       localStorage.setItem('selectedBg', selected);
@@ -665,30 +774,6 @@
     function toggleSettings() {
       const panel = document.getElementById('settingsPanel');
       panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
-    }
-
-    function openLink(url) {
-      if (aboutBlankToggle.checked) {
-        const win = window.open('about:blank', '_blank');
-        if (win) {
-          win.document.write(`
-            <html>
-              <head>
-                <title>Clever | Portal</title>
-                <link rel="icon" href="https://assets.clever.com/favicons/clever-favicon.ico">
-                <style>body { margin: 0; padding: 0; overflow: hidden; background: #000; } iframe { width: 100vw; height: 100vh; border: none; }</style>
-              </head>
-              <body>
-                <iframe src="${url}"></iframe>
-              </body>
-            </html>
-          `);
-          win.document.close();
-        }
-        window.location.href = 'https://clever.com';
-      } else {
-        window.location.href = url;
-      }
     }
   </script>
 
