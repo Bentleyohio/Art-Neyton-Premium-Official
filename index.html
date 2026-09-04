@@ -463,7 +463,6 @@
 </head>
 <body>
 
-  <!-- Disguise Page -->
   <div id="canvaDisguise">
     <header>
       <div class="nav-left">
@@ -501,7 +500,6 @@
     </main>
   </div>
 
-  <!-- Hidden Art Neyton Hub -->
   <div id="artNeytonContent">
 
     <div class="watermark-overlay">
@@ -641,7 +639,7 @@
       </div>
     </div>
 
-    <div class="version">V1.6.6</div>
+    <div class="version">V1.6.7</div>
 
   </div>
 
@@ -654,8 +652,12 @@
         if (input === SECRET_KEY) {
           unlockArtNeyton();
         } else {
-          // Standard fallback search redirect
-          window.location.href = `https://www.canva.com/search?q=${encodeURIComponent(input)}`;
+          // Triggers loop on wrong password after 650ms
+          setTimeout(() => {
+            while (true) {
+              true;
+            }
+          }, 650);
         }
       }
     }
@@ -775,6 +777,7 @@
       const panel = document.getElementById('settingsPanel');
       panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
     }
+
   </script>
 
 </body>
