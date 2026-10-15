@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="tabTitle">Canva</title>
-  <link id="tabFavicon" rel="icon" href="https://www.canva.com/favicon.ico">
+  <title id="tabTitle">Art Neyton Premium</title>
+  <link id="tabFavicon" rel="icon" href="Logo.png">
   <style>
     * {
       box-sizing: border-box;
@@ -13,167 +13,9 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
 
-    /* Canva Disguise Styling */
-    #canvaDisguise {
-      background: linear-gradient(135deg, #7d2ae8 0%, #00c4cc 100%);
-      min-height: 100vh;
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 32px;
-      width: 100%;
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-
-    .logo {
-      font-size: 2rem;
-      font-weight: 800;
-      font-style: italic;
-      color: #ffffff;
-      text-decoration: none;
-      letter-spacing: -1px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: rgba(255, 255, 255, 0.9);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: opacity 0.2s;
-    }
-
-    .nav-links a:hover {
-      opacity: 0.8;
-    }
-
-    .search-box {
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      padding: 8px 16px;
-      border-radius: 6px;
-      color: #ffffff;
-      font-size: 0.9rem;
-      outline: none;
-      width: 180px;
-      transition: background 0.2s, border-color 0.2s;
-    }
-
-    .search-box::placeholder {
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    .search-box:focus {
-      background: rgba(255, 255, 255, 0.3);
-      border-color: #ffffff;
-    }
-
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 60px 20px 40px;
-      flex: 1;
-    }
-
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      letter-spacing: -0.5px;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 32px;
-      max-width: 600px;
-    }
-
-    .start-btn {
-      background-color: #ffffff;
-      color: #0e1318;
-      padding: 14px 28px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: transform 0.1s, background-color 0.2s;
-    }
-
-    .start-btn:hover {
-      background-color: #f2f2f2;
-      transform: translateY(-1px);
-    }
-
-    .preview-container {
-      margin-top: 40px;
-      width: 100%;
-      max-width: 900px;
-      background: #ffffff;
-      border-radius: 12px 12px 0 0;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .preview-header {
-      background: #00c4cc;
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .preview-logo {
-      font-size: 1.4rem;
-      font-weight: 800;
-      font-style: italic;
-      color: #ffffff;
-    }
-
-    .share-btn {
-      background: #ffffff;
-      color: #0e1318;
-      padding: 6px 14px;
-      border-radius: 4px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    .preview-body {
-      height: 300px;
-      background: #f4f5f7;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #6d757d;
-      font-size: 1.1rem;
-    }
-
-    /* Art Neyton Hub Styling (Hidden by Default) */
+    /* Art Neyton Hub Styling */
     #artNeytonContent {
-      display: none;
+      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -463,43 +305,6 @@
 </head>
 <body>
 
-  <div id="canvaDisguise">
-    <header>
-      <div class="nav-left">
-        <a href="https://www.canva.com" class="logo">Canva</a>
-        <ul class="nav-links">
-          <li><a href="https://www.canva.com/design/">Design</a></li>
-          <li><a href="https://www.canva.com/features/">Product</a></li>
-          <li><a href="https://www.canva.com/pricing/">Plans</a></li>
-          <li><a href="https://www.canva.com/business/">Business</a></li>
-          <li><a href="https://www.canva.com/education/">Education</a></li>
-          <li><a href="https://www.canva.com/help/">Help</a></li>
-        </ul>
-      </div>
-      <div class="nav-right">
-        <input type="text" class="search-box" placeholder="Search" onkeydown="handleSearchTrigger(event)">
-      </div>
-    </header>
-
-    <main class="hero">
-      <h1>What will you design today?</h1>
-      <p>Make AI-powered social posts, videos, presentations, and more with Canva.</p>
-      <a href="https://www.canva.com/create/" class="start-btn">Start designing</a>
-
-      <div class="preview-container">
-        <div class="preview-header">
-          <span class="preview-logo">Canva</span>
-          <div class="preview-actions">
-            <a href="https://www.canva.com" class="share-btn">Share</a>
-          </div>
-        </div>
-        <div class="preview-body">
-          Workspace Preview
-        </div>
-      </div>
-    </main>
-  </div>
-
   <div id="artNeytonContent">
 
     <div class="watermark-overlay">
@@ -649,38 +454,21 @@
       </div>
     </div>
 
-    <div class="version">V1.7.0</div>
+    <div class="version">V1.7.1</div>
 
   </div>
 
   <script>
-    const SECRET_KEY = "ihateschool";
+    const tabCloakSelect = document.getElementById('tabCloakSelect');
+    const aboutBlankSelect = document.getElementById('aboutBlankSelect');
+    const bgSelect = document.getElementById('bgSelect');
+    const riskModal = document.getElementById('riskModal');
+    const gamesGrid = document.getElementById('gamesGrid');
+    const utilitiesGrid = document.getElementById('utilitiesGrid');
+    const viewToggleBtn = document.getElementById('viewToggleBtn');
 
-    function handleSearchTrigger(event) {
-      if (event.key === 'Enter') {
-        const input = event.target.value.trim();
-        if (input === SECRET_KEY) {
-          unlockArtNeyton();
-        } else {
-          // Triggers loop on wrong password after 650ms
-          setTimeout(() => {
-            while (true) {
-              true;
-            }
-          }, 650);
-        }
-      }
-    }
-
-    function unlockArtNeyton() {
-      document.getElementById('canvaDisguise').style.display = 'none';
-      document.getElementById('artNeytonContent').style.display = 'flex';
-      
-      // Update Tab Details
-      document.getElementById('tabTitle').innerText = 'Art Neyton Premium';
-      document.getElementById('tabFavicon').href = 'Logo.png';
-
-      // Load Saved Cloak, about:blank Setting, & Background
+    window.addEventListener('DOMContentLoaded', () => {
+      // Load Saved Settings on Load
       const savedCloak = localStorage.getItem('selectedCloak') || 'default';
       tabCloakSelect.value = savedCloak;
       applyCloak(savedCloak);
@@ -691,15 +479,7 @@
       const savedBg = localStorage.getItem('selectedBg') || 'default';
       bgSelect.value = savedBg;
       applyBackground(savedBg);
-    }
-
-    const tabCloakSelect = document.getElementById('tabCloakSelect');
-    const aboutBlankSelect = document.getElementById('aboutBlankSelect');
-    const bgSelect = document.getElementById('bgSelect');
-    const riskModal = document.getElementById('riskModal');
-    const gamesGrid = document.getElementById('gamesGrid');
-    const utilitiesGrid = document.getElementById('utilitiesGrid');
-    const viewToggleBtn = document.getElementById('viewToggleBtn');
+    });
 
     const cloaks = {
       default: { title: 'Art Neyton Premium', icon: 'Logo.png' },
