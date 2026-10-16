@@ -93,11 +93,10 @@
       max-width: 900px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
       position: relative;
-      overflow: hidden;
     }
 
     .nav-toggle-btn {
-      width: 100%;
+      width: calc(100% - 50px);
       padding: 12px;
       font-size: 1.05rem;
       font-weight: bold;
@@ -252,16 +251,17 @@
 
     .settings-icon {
       position: absolute;
-      top: 15px;
-      right: -55px;
+      top: 18px;
+      right: 20px;
       background: none;
       border: none;
       color: #71717a;
-      font-size: 2.2rem;
+      font-size: 1.8rem;
       cursor: pointer;
       transition: color 0.2s ease, transform 0.2s ease;
       padding: 5px;
       line-height: 1;
+      z-index: 10;
     }
 
     .settings-icon:hover {
@@ -354,7 +354,8 @@
     @media (max-width: 768px) {
       .grid-container { grid-template-columns: repeat(3, 1fr); }
       .utility-grid-container { grid-template-columns: 1fr; }
-      .settings-icon { right: 15px; top: -45px; }
+      .nav-toggle-btn { width: calc(100% - 45px); }
+      .settings-icon { right: 12px; top: 16px; }
     }
   </style>
 </head>
@@ -537,7 +538,7 @@
       </div>
     </div>
 
-    <div class="version">V1.8.0</div>
+    <div class="version">V1.8.1</div>
 
   </div>
 
