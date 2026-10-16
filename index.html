@@ -28,6 +28,7 @@
       background-attachment: fixed;
       padding: 40px 20px;
       box-sizing: border-box;
+      overflow-x: hidden;
     }
 
     .watermark-overlay {
@@ -92,6 +93,7 @@
       max-width: 900px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
       position: relative;
+      overflow: hidden;
     }
 
     .nav-toggle-btn {
@@ -115,6 +117,24 @@
       box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
     }
 
+    /* Page Slider Container */
+    .view-slider {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .view-track {
+      display: flex;
+      width: 100%;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .page-panel {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+
     .grid-container {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -131,7 +151,7 @@
       border: 1px solid #2e2a4a;
       border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.2s ease, border-color 0.2s ease;
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -152,10 +172,11 @@
     .launcher-btn:hover {
       background-color: rgba(39, 35, 61, 0.95);
       border-color: #433d6b;
+      transform: translateY(-2px);
     }
 
     .utility-grid-container {
-      display: none;
+      display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 16px;
       width: 100%;
@@ -193,6 +214,40 @@
       border-color: #00f2fe;
       box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
       transform: translateY(-2px);
+    }
+
+    /* Glowing Pagination Navigation Bar */
+    .pagination-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 5px;
+    }
+
+    .page-btn {
+      background: rgba(26, 24, 41, 0.8);
+      border: 1px solid #2e2a4a;
+      color: #a1a1aa;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .page-btn:hover {
+      color: #ffffff;
+      border-color: #7b73ff;
+      box-shadow: 0 0 10px rgba(123, 115, 255, 0.3);
+    }
+
+    .page-btn.active {
+      color: #00f2fe;
+      border-color: #00f2fe;
+      background: rgba(0, 242, 254, 0.1);
+      box-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
     }
 
     .settings-icon {
@@ -331,92 +386,120 @@
 
       <button id="viewToggleBtn" class="nav-toggle-btn" onclick="toggleView()">Switch to Utilities</button>
 
-      <div id="gamesGrid" class="grid-container">
-        <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.xyz.strongdog.ililiilliiliililil.jumpingcrab.com/')">
-          <img src="StrongDogLogo.png" alt="Strongdog SDXP">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.luminalos.nmnnmmn.learning.mooo.com/')">
-          <img src="Luminal.png" alt="Luminal OS">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.fern.isgoated.illillililililili.mooo.com')">
-          <img src="Fern.png" alt="Fern">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.doge.nmnnmmn.learnin.mooo.com/')">
-          <img src="DogeUB.png" alt="DogeUB">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://www.canva.com.galaxyv7.lliiilililliiliilillililiilllilil.chickenkiller.com')">
-          <img src="Galaxy.png" alt="Galaxy">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.shadow.ililiilliiliililil.mooo.com/')">
-          <img src="Shadow.png" alt="Shadow">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://unpkg.com/valoq-math-work@1.0.17/index.html')">
-          <img src="Nautilus.png" alt="Nautilus">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.1key.iliiliiiliil.jumpingcrab.com/')">
-          <img src="key-turning.gif" alt="Key GIF">
-          <span>1-Key</span>
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://www.canva.com.arctic.ilililililllilillillililiilllllllilil.chickenkiller.com')">
-          <img src="Arctic.png" alt="Arctic">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://www.canva.com.ghost.lab.ilililililllilillillililiilllllllilil.chickenkiller.com')">
-          <img src="Ghost.png" alt="Ghost">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.petezah.ililiilliiliilil.mooo.com/')">
-          <img src="Petezah.png" alt="Petezah">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://www.canva.com.cherri.ilililililliil.chickenkiller.com')">
-          <img src="Cherri.png" alt="Cherri">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.velara.ililliii.jumpingcrab.com')">
-          <img src="Velara.png" alt="Velara">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.utopia.ililllilii.mooo.com')">
-          <img src="Utopia.png" alt="Utopia">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://www.canva.com.catclass.ilililililllilillillililiilllllllilil.chickenkiller.com')">
-          <img src="Catclass.png" alt="Catclass">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://www.canva.com.mizu.ilillillilililililiiililililililililililil.chickenkiller.com')">
-          <img src="Mizu.png" alt="Mizu">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('http://www.canva.com.duckmath.ililillililililililililililiilililiil.chickenkiller.com/')">
-          <img src="DuckMath.png" alt="DuckMath">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://www.canva.com.studyhall.ilililiiilliillillillililiilllllllilil.chickenkiller.com')">
-          <img src="StudyHall.png" alt="StudyHall">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://www.canva.com.tungtung.lliiilililliiliilillililiilllilil.chickenkiller.com')">
-          <img src="Tung-Tung.png" alt="Tung-Tung">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://www.canva.com.noahs.tutoring.hub.iilililliiliilillililiilllilil.chickenkiller.com')">
-          <img src="Noahs-tutoring-hub.png" alt="Noahs-tutoring-hub">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://www.canva.com.xylora.lliiilililliiliilillililiilllilil.chickenkiller.com')">
-          <img src="Xylora.png" alt="Xylora">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://www.canva.com.nocturne.ilililililllilllillililiilllllllilil.chickenkiller.com')">
-          <img src="Nocturne.png" alt="Nocturne">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://www.canva.com.rhodium.liililililililililliil.studdddy.ya.chickenkiller.com')">
-          <img src="Rhodium.png" alt="Rhodium">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://www.canva.onlylessions.ilillililiililil.definately.learning.chickenkiller.com')">
-          <img src="desync.png" alt="desync">
-        </a>
-        <a class="launcher-btn" onclick="launchSite('https://www.canva.com.edu-rocks.ililii.jumpingcrab.com')">
-          <img src="Edurocks.png" alt="Edurocks">
-        </a>
+      <!-- View Slider Container -->
+      <div class="view-slider">
+        <div id="viewTrack" class="view-track">
+
+          <!-- PAGE 1: GAMES -->
+          <div class="page-panel">
+            <div class="grid-container">
+              <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.xyz.strongdog.ililiilliiliililil.jumpingcrab.com/')">
+                <img src="StrongDogLogo.png" alt="Strongdog SDXP">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.luminalos.nmnnmmn.learning.mooo.com/')">
+                <img src="Luminal.png" alt="Luminal OS">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.fern.isgoated.illillililililili.mooo.com')">
+                <img src="Fern.png" alt="Fern">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.doge.nmnnmmn.learnin.mooo.com/')">
+                <img src="DogeUB.png" alt="DogeUB">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://www.canva.com.galaxyv7.lliiilililliiliilillililiilllilil.chickenkiller.com')">
+                <img src="Galaxy.png" alt="Galaxy">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.shadow.ililiilliiliililil.mooo.com/')">
+                <img src="Shadow.png" alt="Shadow">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://unpkg.com/valoq-math-work@1.0.17/index.html')">
+                <img src="Nautilus.png" alt="Nautilus">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.1key.iliiliiiliil.jumpingcrab.com/')">
+                <img src="key-turning.gif" alt="Key GIF">
+                <span>1-Key</span>
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://www.canva.com.arctic.ilililililllilillillililiilllllllilil.chickenkiller.com')">
+                <img src="Arctic.png" alt="Arctic">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://www.canva.com.ghost.lab.ilililililllilillillililiilllllllilil.chickenkiller.com')">
+                <img src="Ghost.png" alt="Ghost">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.petezah.ililiilliiliilil.mooo.com/')">
+                <img src="Petezah.png" alt="Petezah">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://www.canva.com.cherri.ilililililliil.chickenkiller.com')">
+                <img src="Cherri.png" alt="Cherri">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.velara.ililliii.jumpingcrab.com')">
+                <img src="Velara.png" alt="Velara">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://login.i-ready.com.utopia.ililllilii.mooo.com')">
+                <img src="Utopia.png" alt="Utopia">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://www.canva.com.catclass.ilililililllilillillililiilllllllilil.chickenkiller.com')">
+                <img src="Catclass.png" alt="Catclass">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://www.canva.com.mizu.ilillillilililililiiililililililililililil.chickenkiller.com')">
+                <img src="Mizu.png" alt="Mizu">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('http://www.canva.com.duckmath.ililillililililililililililiilililiil.chickenkiller.com/')">
+                <img src="DuckMath.png" alt="DuckMath">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://www.canva.com.studyhall.ilililiiilliillillillililiilllllllilil.chickenkiller.com')">
+                <img src="StudyHall.png" alt="StudyHall">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://www.canva.com.tungtung.lliiilililliiliilillililiilllilil.chickenkiller.com')">
+                <img src="Tung-Tung.png" alt="Tung-Tung">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://www.canva.com.noahs.tutoring.hub.iilililliiliilillililiilllilil.chickenkiller.com')">
+                <img src="Noahs-tutoring-hub.png" alt="Noahs-tutoring-hub">
+              </a>
+            </div>
+          </div>
+
+          <!-- PAGE 2: GAMES -->
+          <div class="page-panel">
+            <div class="grid-container">
+              <a class="launcher-btn" onclick="launchSite('https://www.canva.com.strawberri.ililiilliiliililil.jumpingcrab.com')">
+                <img src="Strawberri.png" alt="Strawberri">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://www.canva.com.edu-rocks.ililii.jumpingcrab.com')">
+                <img src="Edurocks.png" alt="Edurocks">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://www.canva.com.xylora.lliiilililliiliilillililiilllilil.chickenkiller.com')">
+                <img src="Xylora.png" alt="Xylora">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://www.canva.com.nocturne.ilililililllilllillililiilllllllilil.chickenkiller.com')">
+                <img src="Nocturne.png" alt="Nocturne">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://www.canva.com.rhodium.liililililililililliil.studdddy.ya.chickenkiller.com')">
+                <img src="Rhodium.png" alt="Rhodium">
+              </a>
+              <a class="launcher-btn" onclick="launchSite('https://www.canva.onlylessions.ilillililiililil.definately.learning.chickenkiller.com')">
+                <img src="desync.png" alt="desync">
+              </a>
+            </div>
+          </div>
+
+          <!-- UTILITIES PAGE -->
+          <div class="page-panel">
+            <div class="utility-grid-container">
+              <a class="utility-btn" onclick="launchSite('https://www.canva.com.toustream.lliiililillillillililiilllilil.chickenkiller.com')">
+                <img src="Cheesy.png" alt="Cheesy">
+              </a>
+              <a class="utility-btn" onclick="launchSite('https://login.i-ready.com.no-guardian-hub.ililiilliiliililil.jumpingcrab.com')">
+                <img src="No-Guardian-Hub.png" alt="No-Guardian-Hub">
+              </a>
+            </div>
+          </div>
+
+        </div>
       </div>
 
-      <div id="utilitiesGrid" class="utility-grid-container">
-        <a class="utility-btn" onclick="launchSite('https://www.canva.com.toustream.lliiililillillillililiilllilil.chickenkiller.com')">
-          <img src="Cheesy.png" alt="Cheesy">
-        </a>
-        <a class="utility-btn" onclick="launchSite('https://login.i-ready.com.no-guardian-hub.ililiilliiliililil.jumpingcrab.com')">
-          <img src="No-Guardian-Hub.png" alt="No-Guardian-Hub">
-        </a>
+      <!-- Pagination Bar -->
+      <div id="paginationBar" class="pagination-bar">
+        <button id="p1Btn" class="page-btn active" onclick="goToPage(0)">Page 1</button>
+        <button id="p2Btn" class="page-btn" onclick="goToPage(1)">Page 2</button>
       </div>
 
       <div id="settingsPanel" class="settings-panel">
@@ -454,7 +537,7 @@
       </div>
     </div>
 
-    <div class="version">V1.7.2</div>
+    <div class="version">V1.8.0</div>
 
   </div>
 
@@ -463,9 +546,13 @@
     const aboutBlankSelect = document.getElementById('aboutBlankSelect');
     const bgSelect = document.getElementById('bgSelect');
     const riskModal = document.getElementById('riskModal');
-    const gamesGrid = document.getElementById('gamesGrid');
-    const utilitiesGrid = document.getElementById('utilitiesGrid');
+    const viewTrack = document.getElementById('viewTrack');
     const viewToggleBtn = document.getElementById('viewToggleBtn');
+    const paginationBar = document.getElementById('paginationBar');
+    const p1Btn = document.getElementById('p1Btn');
+    const p2Btn = document.getElementById('p2Btn');
+
+    let currentSlide = 0; // 0: Game P1, 1: Game P2, 2: Utilities
 
     window.addEventListener('DOMContentLoaded', () => {
       // Load Saved Settings on Load
@@ -498,6 +585,37 @@
       daisys: 'url("Daisys.png")',
       lynda: 'url("Lynda.png")'
     };
+
+    // Smooth Slide Transition Function
+    function goToPage(index) {
+      currentSlide = index;
+      viewTrack.style.transform = `translateX(-${index * 100}%)`;
+
+      if (index === 2) {
+        // Utilities Mode
+        viewToggleBtn.textContent = 'Switch to Games';
+        viewToggleBtn.style.color = '#7b73ff';
+        viewToggleBtn.style.borderColor = '#7b73ff';
+        paginationBar.style.display = 'none';
+      } else {
+        // Games Mode
+        viewToggleBtn.textContent = 'Switch to Utilities';
+        viewToggleBtn.style.color = '#00f2fe';
+        viewToggleBtn.style.borderColor = '#00f2fe';
+        paginationBar.style.display = 'flex';
+
+        p1Btn.classList.toggle('active', index === 0);
+        p2Btn.classList.toggle('active', index === 1);
+      }
+    }
+
+    function toggleView() {
+      if (currentSlide === 2) {
+        goToPage(0); // Return to Game Page 1
+      } else {
+        goToPage(2); // Slide to Utilities Page
+      }
+    }
 
     // Launches site depending on about:blank setting
     function launchSite(url) {
@@ -546,22 +664,6 @@
 
     function handleAboutBlankChange() {
       localStorage.setItem('selectedAboutBlank', aboutBlankSelect.value);
-    }
-
-    function toggleView() {
-      if (gamesGrid.style.display === 'none') {
-        gamesGrid.style.display = 'grid';
-        utilitiesGrid.style.display = 'none';
-        viewToggleBtn.textContent = 'Switch to Utilities';
-        viewToggleBtn.style.color = '#00f2fe';
-        viewToggleBtn.style.borderColor = '#00f2fe';
-      } else {
-        gamesGrid.style.display = 'none';
-        utilitiesGrid.style.display = 'grid';
-        viewToggleBtn.textContent = 'Switch to Games';
-        viewToggleBtn.style.color = '#7b73ff';
-        viewToggleBtn.style.borderColor = '#7b73ff';
-      }
     }
 
     function applyCloak(preset) {
